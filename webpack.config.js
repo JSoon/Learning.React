@@ -1,7 +1,7 @@
 /**
  * webpack config
  */
-var webpack = require("webpack");
+var webpack = require('webpack');
 
 module.exports = {
     entry: './html/test/react/main.jsx',
