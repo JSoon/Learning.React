@@ -1,0 +1,22 @@
+# 指定忽略不需要上传的文件
+
+##############################################
+# 前端忽略文件
+##############################################
+
+# git
+#.gitignore
+
+# npm
+node_modules
+npm-debug.log
+
+# bower
+bower_components
+
+# Gulp
+
+# test 测试文件
+#test
+
+dist
