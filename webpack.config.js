@@ -4,9 +4,15 @@
 var webpack = require("webpack");
 
 module.exports = {
-    entry: './html/test/react/main.jsx',
+    entry: [
+        './html/test/react/like.jsx',
+        './html/test/react/list.jsx'
+    ],
     output: {
         filename: './html/test/react/main-bundle.js'
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
     },
     module: {
         loaders: [{
