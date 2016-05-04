@@ -4,14 +4,16 @@
 var webpack = require('webpack');
 
 module.exports = {
-    entry: [
-        // './html/test/react/like.jsx',
-        // './html/test/react/list.jsx'
-        './html/redux/test.js'
-    ],
+    entry: {
+        // '05_combine-reducers': './html/redux/05_combine-reducers.js',
+        // '08_dispatch-async-action': './html/redux/08_dispatch-async-action.js',
+        // '10_state-subscriber': './html/redux/10_state-subscriber.js'
+        'index': './html/printer/index.js'
+    },
     output: {
-        // filename: './html/react/main-bundle.js'
-        filename: './html/redux/main-bundle.js'
+        filename: '[name].js',
+        // path: './html/redux/dist'
+        path: './html/printer/dist'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
@@ -22,6 +24,7 @@ module.exports = {
             exclude: /(node_modules|bower_components)/,
             loader: 'babel', // 'babel-loader' is also a legal name to reference
             query: {
+                plugins: ['transform-object-rest-spread'],
                 presets: ['react', 'es2015']
             }
         }]

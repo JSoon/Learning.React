@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["ReduxThunk"] = factory();
+	else
+		root["ReduxThunk"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -49,60 +59,28 @@
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
-	var _redux = __webpack_require__(2);
+	exports.__esModule = true;
+	exports['default'] = thunkMiddleware;
+	function thunkMiddleware(_ref) {
+	  var dispatch = _ref.dispatch;
+	  var getState = _ref.getState;
 
-	// action
-	function increment() {
-	    return {
-	        type: 'INCREMENT'
+	  return function (next) {
+	    return function (action) {
+	      if (typeof action === 'function') {
+	        return action(dispatch, getState);
+	      }
+
+	      return next(action);
 	    };
+	  };
 	}
-
-	function decrement() {
-	    return {
-	        type: 'DECREMENT'
-	    };
-	}
-
-	// reducer
-	function counter() {
-	    var state = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-	    var action = arguments[1];
-
-	    switch (action.type) {
-	        case 'INCREMENT':
-	            return state + 1;
-	        case 'DECREMENT':
-	            return state - 1;
-	        default:
-	            return state;
-	    }
-	}
-
-	// store machine
-	var store = (0, _redux.createStore)(counter);
-
-	// subscribe
-	store.subscribe(function () {
-	    return console.log(store.getState());
-	});
-
-	// dispatch
-	store.dispatch(increment());
-
-	store.dispatch(decrement());
-
-	store.dispatch(increment());
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	module.exports = Redux;
 
 /***/ }
-/******/ ]);
+/******/ ])
+});
+;
