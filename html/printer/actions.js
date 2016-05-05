@@ -1,14 +1,14 @@
 /**
  * action types
  */
-export const ADD_TODO = 'ADD_TODO'
-export const COMPLETE_TODO = 'COMPLETE_TODO'
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
+const ADD_TODO = 'ADD_TODO'
+const COMPLETE_TODO = 'COMPLETE_TODO'
+const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 
 /*
  * other constants
  */
-export const VisibilityFilters = {
+const VisibilityFilters = {
     SHOW_ALL: 'SHOW_ALL',
     SHOW_COMPLETED: 'SHOW_COMPLETED',
     SHOW_ACTIVE: 'SHOW_ACTIVE'
@@ -17,23 +17,33 @@ export const VisibilityFilters = {
 /**
  * action creators
  */
-export var addTodo = (text) => {
+var addTodo = (text) => {
     return {
         type: ADD_TODO,
         text: text
     }
 }
 
-export var completeTodo = (index) => {
+var completeTodo = (index) => {
     return {
         type: COMPLETE_TODO,
         index: index
     }
 }
 
-export var setVisibilityFilter = (filter) => {
+var setVisibilityFilter = (filter) => {
     return {
         type: SET_VISIBILITY_FILTER,
         filter: filter
     }
+}
+
+export {
+    ADD_TODO,
+    COMPLETE_TODO,
+    SET_VISIBILITY_FILTER,
+    VisibilityFilters,
+    addTodo,
+    completeTodo,
+    setVisibilityFilter
 }
