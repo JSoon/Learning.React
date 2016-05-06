@@ -8,12 +8,14 @@ module.exports = {
         // '05_combine-reducers': './html/redux/05_combine-reducers.js',
         // '08_dispatch-async-action': './html/redux/08_dispatch-async-action.js',
         // '10_state-subscriber': './html/redux/10_state-subscriber.js'
-        'index': './html/printer/index.js'
+        // 'index': './html/printer/index.js'
+        'index': './html/todos-react/index.jsx'
     },
     output: {
         filename: '[name].js',
         // path: './html/redux/dist'
-        path: './html/printer/dist'
+        // path: './html/printer/dist'
+        path: './html/todos-react/dist'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
