@@ -1,15 +1,10 @@
 import React, { Component } from 'react'
-import { connect } form 'react-redux'
-import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters } from './actions'
 import AddTodo from './AddTodo'
 import TodoList from './TodoList'
 import Footer from './Footer'
 
 class App extends Component {
 	render() {
-		// 通过调用 connect() 注入:
-		// 解构赋值（http://es6.ruanyifeng.com/#docs/destructuring）
-		const { dispatch, visibleTodos, VisibilityFilter } = this.props
 		return (
 			<div>
 				<AddTodo

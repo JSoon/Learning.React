@@ -9,13 +9,13 @@ module.exports = {
         // '08_dispatch-async-action': './html/redux/08_dispatch-async-action.js',
         // '10_state-subscriber': './html/redux/10_state-subscriber.js'
         // 'index': './html/printer/index.js'
-        'index': './html/todos-react/index.jsx'
+        'index': './html/todos-redux/index.jsx'
     },
     output: {
         filename: '[name].js',
         // path: './html/redux/dist'
         // path: './html/printer/dist'
-        path: './html/todos-react/dist'
+        path: './html/todos-redux/dist'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
@@ -36,6 +36,7 @@ module.exports = {
         //but get it from a global 'React' variable
         'react': 'React',
         'react-dom': 'ReactDOM',
-        'redux': 'Redux'
+        'redux': 'Redux',
+        'react-redux': 'ReactRedux'
     }
 };
