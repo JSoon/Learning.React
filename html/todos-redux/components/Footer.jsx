@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 class Footer extends Component {
 	renderFilter(filter, name) {
 		if (filter === this.props.filter) {
+			console.log(this.props.filter)
 			return name
 		}
 
