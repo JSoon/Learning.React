@@ -10,8 +10,9 @@ class App extends Component {
 		// 任何一个从 connect() 包装好的组件都可以得到一个 dispatch 方法作为组件的 props，
 		// 以及得到全局 state 中所需的任何内容
 		// 
-		// 从组件的 props 属性中导入 visibilityFilter
-		const { dispatch, visibilityFilter } = this.props
+		// 从组件的 props 属性中导入 visibleTodos, visibilityFilter
+		// 解构赋值（http://es6.ruanyifeng.com/#docs/destructuring）
+		const { dispatch, visibleTodos, visibilityFilter } = this.props
 		// equal to below
 		// const visibilityFilter = this.props.visibilityFilter
 
@@ -19,11 +20,18 @@ class App extends Component {
 			<div>
 				<AddTodo
 					onAddClick = {
-						(text) => console.log('add todo:', text)
+						text => dispatch(addTodo(text))
+						// (text) => console.log('add todo:', text)
 					}
 				/>
 				<TodoList
-					todos = {[{
+					todos = { this.props.visibleTodos }
+					onTodoClick = {
+						index => {
+							dispatch(completeTodo(index))
+						}
+					}
+					/* todos = {[{
 						text: 'Use Redux',
 						completed: true
 					},{
@@ -31,12 +39,12 @@ class App extends Component {
 						completed: false
 					}]}
 					onTodoClick = {
-						(index) =>
+						index =>
 							console.log('todo clicked: todo', index)
-					}
+					} */
 				/>
 				<Footer
-					filter = { visibilityFilter }
+					filter = { this.props.visibilityFilter }
 					onFilterChange = {
 						filter => {
 							// console.log('filter change:', filter)
@@ -59,10 +67,10 @@ class App extends Component {
 }
 
 App.propTypes = {
-	// visibleTodos: React.PropTypes.arrayOf(React.PropTypes.shape({
-	// 	text: React.PropTypes.string.isRequired,
-	// 	completed: React.PropTypes.bool.isRequired
-	// })),
+	visibleTodos: React.PropTypes.arrayOf(React.PropTypes.shape({
+		text: React.PropTypes.string.isRequired,
+		completed: React.PropTypes.bool.isRequired
+	})),
 	// 这里通过容器组件 App 的 props.visibilityFilter 传递给了展示组件 Footer 的 props.filter
 	// 且他们必须结构类型一致
 	// App 的 props 映射自 Redux 中的 state
@@ -73,11 +81,27 @@ App.propTypes = {
 	]).isRequired
 }
 
+function selectTodos(todos, filter) {
+	console.log(todos)
+	console.log(filter)
+	switch(filter) {
+		case VisibilityFilters.SHOW_ALL:
+			return todos
+		case VisibilityFilters.SHOW_COMPLETED:
+			return todos.filter(todo => todo.completed)
+		case VisibilityFilters.SHOW_ACTIVE:
+			return todos.filter(todo => !todo.completed)
+	}
+}
+
 // 映射 Redux.state 中的属性到 App.props
 function mapStateToProps(state) {
 	console.log(state)
+	let todos = state.todos,
+		filter = state.visibilityFilter
 	return {
-		visibilityFilter: state.visibilityFilter
+		visibleTodos: selectTodos(todos, filter),
+		visibilityFilter: filter
 	}
 }
 
