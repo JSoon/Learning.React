@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch'
+
 const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT'
 const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT'
 
@@ -16,7 +18,7 @@ let selectSubreddit = subreddit => {
     }
 }
 
-// whatever
+// 过期的 subreddit
 let invalidateSubreddit = subreddit => {
     return {
         type: INVALIDATE_SUBREDDIT,
@@ -31,7 +33,7 @@ let invalidateSubreddit = subreddit => {
 // 请求 posts
 let requestPosts = subreddit => {
     return {
-        type: REQUEST_POSTS
+        type: REQUEST_POSTS,
         subreddit
     }
 }
@@ -46,4 +48,32 @@ let receivePosts = (subreddit, json) => {
         ),
         receivedAt: Date.now()
     }
+}
+
+// fetch posts
+let fetchPosts = (subreddit) => {
+    return (dispatch, getState) => {
+        dispatch(requestPosts(subreddit))
+        return fetch(`http://www.subreddit.com/r/${subreddit}.json`)
+            .then(response => {
+                let json = response.json()
+                return json
+            })
+            .then(json => {
+                dispatch(receivePosts(subreddit, json))
+            })
+    }
+}
+
+export {
+    SELECT_SUBREDDIT,
+    INVALIDATE_SUBREDDIT,
+    REQUEST_POSTS,
+    RECEIVE_POSTS,
+
+    selectSubreddit,
+    invalidateSubreddit,
+    requestPosts,
+    receivePosts,
+    fetchPosts
 }
