@@ -17,7 +17,13 @@ class App extends Component {
 					}
 				/>
 				<SubredditList
-
+					items = {
+						[{
+							text: 'heheda'
+						}, {
+							text: 'momoda'
+						}]
+					}
 				/>
 			</div>
 		)

@@ -5,16 +5,23 @@ class SubredditList extends Component {
 	render() {
 		return (
 			<ul>
-				<Subreddit
-					title = '呵呵哒'
-				/>
+				{
+					this.props.items.map((item, index) =>
+						<Subreddit
+							key = { index }
+							title = { item.text }
+						/>
+					)
+				}
 			</ul>
 		)
 	}
 }
 
 SubredditList.PropTypes = {
-
+	items: React.PropTypes.arrayOf(React.PropTypes.shape({
+		title: React.PropTypes.string.isRequired
+	}).isRequired).isRequired
 }
 
 export default SubredditList
