@@ -9,7 +9,7 @@ class SubredditList extends Component {
 					this.props.items.map((item, index) =>
 						<Subreddit
 							key = { index }
-							title = { item.text }
+							title = { item.title }
 						/>
 					)
 				}

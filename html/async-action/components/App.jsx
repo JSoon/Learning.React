@@ -6,24 +6,26 @@ import SubredditList from './SubredditList'
 
 class App extends Component {
 	render() {
-		const { dispatch } = this.props
+		const { dispatch, list } = this.props
 		return (
 			<div>
 				<Toolbar
 					onSelectClick = {
 						(subreddit) => {
 							dispatch(selectSubreddit(subreddit))
+							dispatch(fetchPosts(subreddit))
 						}
 					}
 				/>
 				<SubredditList
-					items = {
+					items = { this.props.list }
+					/*items = {
 						[{
-							text: 'heheda'
+							title: 'heheda'
 						}, {
-							text: 'momoda'
+							title: 'momoda'
 						}]
-					}
+					}*/
 				/>
 			</div>
 		)
@@ -31,7 +33,15 @@ class App extends Component {
 }
 
 App.PropTypes = {
-
+	list: React.PropTypes.arrayOf(React.PropTypes.shape({
+		title: React.PropTypes.string.isRequired
+	}))
 }
 
-export default connect()(App)
+function mapStateToProps(state) {
+	return {
+		list: state.postsBySubreddit.items || []
+	}
+}
+
+export default connect(mapStateToProps)(App)

@@ -4,14 +4,17 @@ class Subreddit extends Component {
 	render() {
 		return (
 			<li>
+				<a href="{ this.props.url }">
 				{ this.props.title }
+				</a>
 			</li>
 		)
 	}
 }
 
 Subreddit.PropTypes = {
-	title: React.PropTypes.string.isRequired
+	title: React.PropTypes.string.isRequired,
+	url: React.PropTypes.string.isRequired
 }
 
 export default Subreddit
