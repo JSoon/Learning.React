@@ -4,7 +4,7 @@ class Subreddit extends Component {
 	render() {
 		return (
 			<li>
-				<a href="{ this.props.url }">
+				<a href = { this.props.url } target = "_blank">
 				{ this.props.title }
 				</a>
 			</li>

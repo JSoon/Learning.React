@@ -7,7 +7,7 @@ import {
 } from './actions'
 
 // 选择 subreddit
-let selectSubreddit = (state = 'reactjs', action) => {
+let selectedSubreddit = (state = 'frontend', action) => {
     switch (action.type) {
         case SELECT_SUBREDDIT:
             return action.subreddit
@@ -37,7 +37,7 @@ let posts = (state = {
                 isFetching: false,
                 didInvalidate: false,
                 items: action.posts,
-                lastUpdated: action.receiveAt
+                lastUpdated: action.receivedAt
             })
         default:
             return state
@@ -52,7 +52,7 @@ let postsBySubreddit = (state = {}, action) => {
         case REQUEST_POSTS:
             let nextState = {}
             nextState[action.subreddit] = posts(state[action.subreddit], action)
-            return Object.assign({}, state, nextState[action.subreddit])
+            return Object.assign({}, state, nextState)
                 // return Object.assign({}, state, {
                 //     [action.subreddit]: posts(state[action.subreddit], action)
                 // })
@@ -62,8 +62,9 @@ let postsBySubreddit = (state = {}, action) => {
 }
 
 // 合并 reducers
+// 也表现了 state 的根结构
 const rootReducer = combineReducers({
-    selectSubreddit,
+    selectedSubreddit,
     postsBySubreddit
 })
 

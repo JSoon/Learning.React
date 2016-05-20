@@ -10,6 +10,7 @@ class SubredditList extends Component {
 						<Subreddit
 							key = { index }
 							title = { item.title }
+							url = { item.url }
 						/>
 					)
 				}
@@ -20,7 +21,8 @@ class SubredditList extends Component {
 
 SubredditList.PropTypes = {
 	items: React.PropTypes.arrayOf(React.PropTypes.shape({
-		title: React.PropTypes.string.isRequired
+		title: React.PropTypes.string.isRequired,
+		url: React.PropTypes.string.isRequired
 	}).isRequired).isRequired
 }
 

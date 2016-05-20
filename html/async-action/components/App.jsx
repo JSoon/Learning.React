@@ -5,8 +5,26 @@ import Toolbar from './Toolbar'
 import SubredditList from './SubredditList'
 
 class App extends Component {
+	constructor(props) {
+		super(props)
+		// console.log(props)
+		console.log('constructor')
+	}
+
+	componentWillMount() {
+	 	// console.log('componentWillMount')   
+	    const { dispatch, selectedSubreddit } = this.props
+	    console.log(selectedSubreddit)
+	    dispatch(fetchPosts(selectedSubreddit))
+	}
+
+	componentDidMount() {
+	 	// console.log('componentDidMount')
+	}
+
 	render() {
-		const { dispatch, list } = this.props
+	 	console.log('render')
+		const { dispatch, selectedSubreddit, items, isFetching } = this.props
 		return (
 			<div>
 				<Toolbar
@@ -17,8 +35,14 @@ class App extends Component {
 						}
 					}
 				/>
+				{ isFetching && items.length === 0 &&
+			    	<h2>Loading...</h2>
+			    }
+				{ !isFetching && items.length === 0 &&
+			    	<h2>Empty</h2>
+			    }
 				<SubredditList
-					items = { this.props.list }
+					items = { items }
 					/*items = {
 						[{
 							title: 'heheda'
@@ -33,14 +57,31 @@ class App extends Component {
 }
 
 App.PropTypes = {
-	list: React.PropTypes.arrayOf(React.PropTypes.shape({
-		title: React.PropTypes.string.isRequired
+	selectedSubreddit: React.PropTypes.string.isRequired,
+	isFetching: React.PropTypes.bool.isRequired,
+	lastUpdated: React.PropTypes.number,
+	items: React.PropTypes.arrayOf(React.PropTypes.shape({
+		title: React.PropTypes.string.isRequired,
+		url: React.PropTypes.string.isRequired
 	}))
 }
 
 function mapStateToProps(state) {
+	console.log('mapStateToProps')
+	let { selectedSubreddit, postsBySubreddit } = state
+	let {
+		isFetching,
+		lastUpdated,
+		items
+	} = postsBySubreddit[selectedSubreddit] || {
+		isFetching: true,
+		items: []
+	}
 	return {
-		list: state.postsBySubreddit.items || []
+		selectedSubreddit,
+		isFetching,
+		lastUpdated,
+		items
 	}
 }
 
