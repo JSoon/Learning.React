@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters } from '../actions'
+import { ActionCreators } from 'redux-undo'
 import AddTodo from './AddTodo'
 import TodoList from './TodoList'
 import Footer from './Footer'
@@ -12,7 +13,13 @@ class App extends Component {
 		// 
 		// 从组件的 props 属性中导入 visibleTodos, visibilityFilter
 		// 解构赋值（http://es6.ruanyifeng.com/#docs/destructuring）
-		const { dispatch, visibleTodos, visibilityFilter } = this.props
+		const {
+			dispatch, 
+			visibleTodos, 
+			visibilityFilter,
+			undoDisabled,
+			redoDisabled
+		} = this.props
 		// equal to below
 		// const visibilityFilter = this.props.visibilityFilter
 
@@ -60,6 +67,10 @@ class App extends Component {
 							dispatch(setVisibilityFilter(filter))
 						}
 					}
+					onUndo = { () => dispatch(ActionCreators.undo()) }
+					onRedo = { () => dispatch(ActionCreators.redo()) }
+					undoDisabled = { this.props.undoDisabled }
+					redoDisabled = { this.props.redoDisabled }
 				/>
 			</div>
 		)
@@ -82,8 +93,6 @@ App.propTypes = {
 }
 
 function selectTodos(todos, filter) {
-	console.log(todos)
-	console.log(filter)
 	switch(filter) {
 		case VisibilityFilters.SHOW_ALL:
 			return todos
@@ -96,12 +105,13 @@ function selectTodos(todos, filter) {
 
 // 映射 Redux.state 中的属性到 App.props
 function mapStateToProps(state) {
-	console.log(state)
-	let todos = state.todos,
+	const todos = state.todos,
 		filter = state.visibilityFilter
 	return {
-		visibleTodos: selectTodos(todos, filter),
-		visibilityFilter: filter
+		visibleTodos: selectTodos(todos.present, filter),
+		visibilityFilter: filter,
+		undoDisabled: todos.past.length === 0,
+		redoDisabled: todos.future.length === 0
 	}
 }
 

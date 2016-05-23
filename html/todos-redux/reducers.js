@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import undoable, { distinctState } from 'redux-undo'
 import { ADD_TODO, COMPLETE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './actions'
 
 // const { SHOW_ALL } = VisibilityFilters
@@ -25,10 +26,12 @@ var todos = (state = [], action) => {
             }
             return state
         case COMPLETE_TODO:
+            let isCompleted = state[action.index].completed,
+                toggleCompleted = !isCompleted
             return [
                 ...state.slice(0, action.index),
                 Object.assign({}, state[action.index], {
-                    completed: true
+                    completed: toggleCompleted
                 }),
                 ...state.slice(action.index + 1)
             ]
@@ -44,7 +47,9 @@ var todos = (state = [], action) => {
 // }
 const todoApp = combineReducers({
     visibilityFilter: visibilityFilter,
-    todos: todos
+    todos: undoable(todos, {
+        filter: distinctState()
+    })
 })
 
 export default todoApp
