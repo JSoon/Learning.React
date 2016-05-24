@@ -42,23 +42,25 @@ class App extends Component {
 						}
 					}
 				/>
-				{ isFetching && items.length === 0 &&
+				{ isFetching /*&& items.length === 0*/ &&
 			    	<h2>Loading...</h2>
 			    }
 				{ !isFetching && items.length === 0 &&
 			    	<h2>Empty</h2>
 			    }
-				<SubredditList
-					items = { items }
-					{ ...boundActionCreators }
-					/*items = {
-						[{
-							title: 'heheda'
-						}, {
-							title: 'momoda'
-						}]
-					}*/
-				/>
+			    { !isFetching && items.length !== 0 &&
+					<SubredditList
+						items = { items }
+						{ ...boundActionCreators }
+						/*items = {
+							[{
+								title: 'heheda'
+							}, {
+								title: 'momoda'
+							}]
+						}*/
+					/>
+				}
 			</div>
 		)
 	}
