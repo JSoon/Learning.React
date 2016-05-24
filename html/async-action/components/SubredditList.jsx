@@ -11,6 +11,7 @@ class SubredditList extends Component {
 							key = { index }
 							title = { item.title }
 							url = { item.url }
+							{ ...this.props }
 						/>
 					)
 				}

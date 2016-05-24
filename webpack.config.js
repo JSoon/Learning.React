@@ -9,15 +9,15 @@ module.exports = {
         // '08_dispatch-async-action': './html/redux/08_dispatch-async-action.js',
         // '10_state-subscriber': './html/redux/10_state-subscriber.js'
         // 'index': './html/printer/index.js'
-        'index': './html/todos-redux/index.jsx'
-        // 'index': './html/async-action/index.jsx'
+        // 'index': './html/todos-redux/index.jsx'
+        'index': './html/async-action/index.jsx'
     },
     output: {
         filename: '[name].js',
         // path: './html/redux/dist'
         // path: './html/printer/dist'
-        path: './html/todos-redux/dist'
-        // path: './html/async-action/dist'
+        // path: './html/todos-redux/dist'
+        path: './html/async-action/dist'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']

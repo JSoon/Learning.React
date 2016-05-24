@@ -4,6 +4,10 @@ import App from './components/App'
 
 import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
+// 如果除了 applyMiddleware，你还用了其它 store enhancer，
+// 一定要把 applyMiddleware 放到组合链的前面，因为 middleware 可能会包含异步操作。
+// 比如，它应该在 redux-devtools 前面，
+// 否则 DevTools 就看不到 Promise middleware 里 dispatch 的 action 了。
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { fetchPosts } from './actions'

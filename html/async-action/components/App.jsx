@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { selectSubreddit, fetchPosts } from '../actions'
 import Toolbar from './Toolbar'
@@ -25,6 +26,12 @@ class App extends Component {
 	render() {
 	 	console.log('render')
 		const { dispatch, selectedSubreddit, items, isFetching } = this.props
+
+		let boundActionCreators = bindActionCreators({
+			selectSubreddit,
+			fetchPosts
+		}, dispatch)
+
 		return (
 			<div>
 				<Toolbar
@@ -43,6 +50,7 @@ class App extends Component {
 			    }
 				<SubredditList
 					items = { items }
+					{ ...boundActionCreators }
 					/*items = {
 						[{
 							title: 'heheda'
@@ -85,4 +93,6 @@ function mapStateToProps(state) {
 	}
 }
 
+// connect 高阶组件，用于监听 Redux store，同时也会将 dispatch 注入到组件的 props 中去
+// 非常地方便
 export default connect(mapStateToProps)(App)
