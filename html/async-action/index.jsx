@@ -27,8 +27,8 @@ let rootEl = document.getElementById('root')
 
 render(
     <Provider store = { store }>
-		<App />
-	</Provider>,
+        <App />
+    </Provider>,
     rootEl
 )
 
