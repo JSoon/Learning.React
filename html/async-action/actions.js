@@ -66,14 +66,14 @@ let fetchPosts = (subreddit) => {
 }
 
 export {
-    SELECT_SUBREDDIT,
-    INVALIDATE_SUBREDDIT,
-    REQUEST_POSTS,
-    RECEIVE_POSTS,
+SELECT_SUBREDDIT,
+INVALIDATE_SUBREDDIT,
+REQUEST_POSTS,
+RECEIVE_POSTS,
 
-    selectSubreddit,
-    invalidateSubreddit,
-    requestPosts,
-    receivePosts,
-    fetchPosts
+selectSubreddit,
+invalidateSubreddit,
+requestPosts,
+receivePosts,
+fetchPosts
 }

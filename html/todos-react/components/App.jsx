@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } form 'react-redux'
+import { connect } from 'react-redux'
 import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters } from './actions'
 import AddTodo from './AddTodo'
 import TodoList from './TodoList'

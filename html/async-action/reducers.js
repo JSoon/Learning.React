@@ -53,9 +53,9 @@ let postsBySubreddit = (state = {}, action) => {
             let nextState = {}
             nextState[action.subreddit] = posts(state[action.subreddit], action)
             return Object.assign({}, state, nextState)
-                // return Object.assign({}, state, {
-                //     [action.subreddit]: posts(state[action.subreddit], action)
-                // })
+        // return Object.assign({}, state, {
+        //     [action.subreddit]: posts(state[action.subreddit], action)
+        // })
         default:
             return state
     }

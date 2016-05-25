@@ -16,6 +16,9 @@ bower_components
 
 # Gulp
 
+# vscode
+.vscode
+
 # test 测试文件
 #test
 

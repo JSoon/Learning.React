@@ -1,4 +1,4 @@
-import React from 'react' 
+import React from 'react'
 import { render } from 'react-dom'
 import App from './components/App'
 
@@ -16,20 +16,20 @@ import rootReducer from './reducers'
 const loggerMiddleware = createLogger()
 
 const store = createStore(
-	rootReducer,
-	applyMiddleware(
-		thunkMiddleware,
-		loggerMiddleware
-	)
+    rootReducer,
+    applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware
+    )
 )
 
 let rootEl = document.getElementById('root')
 
 render(
-	<Provider store = { store }>
+    <Provider store = { store }>
 		<App />
 	</Provider>,
-	rootEl
+    rootEl
 )
 
 // store.dispatch(selectSubreddit('reactjs'))

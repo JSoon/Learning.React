@@ -13,24 +13,22 @@ class App extends Component {
 	}
 
 	componentWillMount() {
-	 	// console.log('componentWillMount')   
-	    const { dispatch, selectedSubreddit } = this.props
-	    console.log(selectedSubreddit)
-	    dispatch(fetchPosts(selectedSubreddit))
+		// console.log('componentWillMount')   
+		const { dispatch, selectedSubreddit } = this.props
+		console.log(selectedSubreddit)
+		dispatch(selectSubreddit(selectedSubreddit))
+		dispatch(fetchPosts(selectedSubreddit))
+		// actions.selectSubreddit(selectedSubreddit)
+		// actions.fetchPosts(selectedSubreddit)
 	}
 
 	componentDidMount() {
-	 	// console.log('componentDidMount')
+		// console.log('componentDidMount')
 	}
 
 	render() {
-	 	console.log('render')
-		const { dispatch, selectedSubreddit, items, isFetching } = this.props
-
-		let boundActionCreators = bindActionCreators({
-			selectSubreddit,
-			fetchPosts
-		}, dispatch)
+		console.log('render')
+		const { dispatch, selectedSubreddit, items, isFetching, actions } = this.props
 
 		return (
 			<div>
@@ -41,17 +39,22 @@ class App extends Component {
 							dispatch(fetchPosts(subreddit))
 						}
 					}
-				/>
+					/>
 				{ isFetching /*&& items.length === 0*/ &&
-			    	<h2>Loading...</h2>
-			    }
+					<h2>Loading...</h2>
+				}
 				{ !isFetching && items.length === 0 &&
-			    	<h2>Empty</h2>
-			    }
-			    { !isFetching && items.length !== 0 &&
+					<h2>Empty</h2>
+				}
+				{ !isFetching && items.length !== 0 &&
 					<SubredditList
 						items = { items }
-						{ ...boundActionCreators }
+						handleClick = {
+							(index) => {
+								console.log(index)
+							}
+						}
+						// actions = { actions }
 						/*items = {
 							[{
 								title: 'heheda'
@@ -59,7 +62,7 @@ class App extends Component {
 								title: 'momoda'
 							}]
 						}*/
-					/>
+						/>
 				}
 			</div>
 		)
@@ -95,6 +98,15 @@ function mapStateToProps(state) {
 	}
 }
 
+// function mapDispatchToProps(dispatch) {
+// 	return {
+// 		actions: bindActionCreators({
+// 			selectSubreddit,
+// 			fetchPosts
+// 		}, dispatch)
+// 	}
+// }
+
 // connect 高阶组件，用于监听 Redux store，同时也会将 dispatch 注入到组件的 props 中去
 // 非常地方便
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps/*, mapDispatchToProps*/)(App)

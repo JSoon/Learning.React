@@ -11,8 +11,13 @@ class SubredditList extends Component {
 							key = { index }
 							title = { item.title }
 							url = { item.url }
-							{ ...this.props }
-						/>
+							handleClick = {
+								() => {
+									this.props.handleClick(index)
+								}
+							}
+							// actions = { this.props.actions }
+							/>
 					)
 				}
 			</ul>
@@ -24,7 +29,8 @@ SubredditList.PropTypes = {
 	items: React.PropTypes.arrayOf(React.PropTypes.shape({
 		title: React.PropTypes.string.isRequired,
 		url: React.PropTypes.string.isRequired
-	}).isRequired).isRequired
+	}).isRequired).isRequired,
+	handleClick: PropTypes.func.isRequired
 }
 
 export default SubredditList
