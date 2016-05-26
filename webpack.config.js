@@ -10,14 +10,16 @@ module.exports = {
         // '10_state-subscriber': './html/redux/10_state-subscriber.js'
         // 'index': './html/printer/index.js'
         // 'index': './html/todos-redux/index.jsx'
-        'index': './html/async-action/index.jsx'
+        // 'index': './html/async-action/index.jsx'
+        'index': './html/router/index.jsx'
     },
     output: {
         filename: '[name].js',
         // path: './html/redux/dist'
         // path: './html/printer/dist'
         // path: './html/todos-redux/dist'
-        path: './html/async-action/dist'
+        // path: './html/async-action/dist'
+        path: './html/router/dist'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
@@ -39,6 +41,7 @@ module.exports = {
         'react': 'React',
         'react-dom': 'ReactDOM',
         'redux': 'Redux',
-        'react-redux': 'ReactRedux'
+        'react-redux': 'ReactRedux',
+        'react-router': 'ReactRouter'
     }
 };
