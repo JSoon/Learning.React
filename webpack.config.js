@@ -38,10 +38,17 @@ module.exports = {
     externals: {
         //don't bundle the 'react' npm package with our bundle.js
         //but get it from a global 'React' variable
-        'react': 'React',
-        'react-dom': 'ReactDOM',
-        'redux': 'Redux',
-        'react-redux': 'ReactRedux',
-        'react-router': 'ReactRouter'
-    }
+        // 'react': 'React',
+        // 'react-dom': 'ReactDOM',
+        // 'redux': 'Redux',
+        // 'react-redux': 'ReactRedux',
+        // 'react-router': 'ReactRouter'
+    },
+    // add this handful of plugins that optimize the build
+    // when we're in production
+    plugins: process.env.NODE_ENV === 'production' ? [
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin()
+    ] : []
 };
