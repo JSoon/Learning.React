@@ -12,7 +12,7 @@ app.use(compression())
 app.use(express.static(path.join(__dirname, 'html/router')))
 
 // send all requests to index.html so browserHistory in React Router works
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'html/router', 'index.html'))
 })
 

@@ -4,7 +4,7 @@ class Dashboard extends Component {
     render() {
         return (
             <h2>Welcome to the app!</h2>
-        );
+        )
     }
 }
 

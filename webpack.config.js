@@ -11,7 +11,8 @@ module.exports = {
         // 'index': './html/printer/index.js'
         // 'index': './html/todos-redux/index.jsx'
         // 'index': './html/async-action/index.jsx'
-        'index': './html/router/index.jsx'
+        // 'index': './html/router/index.jsx'
+        'index': './html/router-redux/index.jsx'
     },
     output: {
         filename: '[name].js',
@@ -19,7 +20,7 @@ module.exports = {
         // path: './html/printer/dist'
         // path: './html/todos-redux/dist'
         // path: './html/async-action/dist'
-        path: './html/router/dist'
+        path: './html/router-redux/dist'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
