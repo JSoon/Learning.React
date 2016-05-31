@@ -3,11 +3,15 @@ import {connect} from 'react-redux'
 import Team from './Team'
 
 class Teams extends Component {
+    componentDidMount() {
+        console.log(document.getElementById('teamList'))
+    }
+
     render() {
         const {teams} = this.props
 
         return (
-            <ul>
+            <ul id="teamList">
                 {
                     teams.map(
                         (item, index) => {
