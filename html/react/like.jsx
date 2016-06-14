@@ -16,20 +16,21 @@ class LikeButton extends Component {
 
 	// 点击事件，注意这里的 event 是一个 SyntheticMouseEvent，不是原生的 onclick 事件
 	handleClick(param, event) {
-		// console.log(param);
-		// console.log(event);
+		console.log(param);
+		console.log(event);
 		this.setState({
 			liked: !this.state.liked
 		});
+		console.log(this.state.liked);
 	}
-	
+
 	// Virtual DOM，它返回一个 LikeButton 组件的实例，并不是一个真正的 DOM 结构
 	// 这样可以避免直接输出 HTML 串可能遭受的 XXS 攻击
 	render() {
 		const text = this.state.liked ? 'liked' : 'haven\'t liked';
 		return (
-			<p onClick={this.handleClick.bind(this, 'hehe')}>
-				You {text} this. Click to toggle.
+			<p onClick={this.handleClick.bind(this, 'hehe') }>
+				You {text} this.Click to toggle.
 			</p>
 		);
 	}
